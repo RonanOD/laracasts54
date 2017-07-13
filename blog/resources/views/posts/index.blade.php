@@ -2,11 +2,9 @@
 
 @section('content')
 
-    <div class="blog-post">
-        @foreach($posts as $post)
-            @include('posts.post')
-        @endforeach
-    </div><!-- /.blog-post -->
+    @foreach($posts as $post)
+        @include('posts.post')
+    @endforeach
 
 
     <nav class="blog-pagination">

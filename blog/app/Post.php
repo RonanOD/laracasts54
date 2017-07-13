@@ -8,7 +8,7 @@ use App\Comment;
 class Post extends Model
 {
     // Allow Mass Assignment
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'user_id'];
 
     public function comments() {
         return $this->hasMany(Comment::class);

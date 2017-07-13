@@ -7,6 +7,11 @@ use App\Post;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index() {
         //$posts = Post::all();
         $posts = Post::latest()->get(); // fetch latest first
@@ -31,7 +36,9 @@ class PostsController extends Controller
             'title' => 'bail|required|unique:posts|max:255',
             'body' => 'required'
         ]);
-        Post::create(request(['title', 'body']));
-        return redirect('/posts');
+        auth()->user()->publish(
+            new Post(request(['title', 'body']))
+        );
+        return redirect('/');
     }
 }
